@@ -1,25 +1,29 @@
 # Freight Rate Prediction Challenge
 
-See `Freight_Rate_ML_Assessment.pdf` for the assessment instructions.
+## Overview
+This repository contains the solution for the Spotter Machine Learning Engineer assessment. The model predicts freight rates using an XGBoost Regressor, achieving an R2 score of 0.85 and an MAE of ~$142 on the internal validation set.
 
-## What to do
+## Project Structure
+- `/notebook/eda.py` - Exploratory Data Analysis script.
+- `/notebook/train_model.py` - Main pipeline for data cleaning, feature engineering, model training, and prediction generation.
+- `validation_predictions.csv` - The final output predictions.
 
-1. Train and validate your model using `data/train_test.csv`.
-2. Predict every load in `data/validation.csv`. Each load has a unique `load_id`.
-3. Fill the matching `predicted_rate` values in `data/validation_predictions_template.csv` and save it as `validation_predictions.csv`.
-4. Predict every row in `data/december_chart_inputs.csv` by filling its `predicted_rate` column.
-5. Install the scorer requirements and run:
+## Setup & Run Instructions
+1. Ensure you have Python 3.8+ installed.
+2. Install the required dependencies:
 
 ```bash
-python -m pip install -r requirements.txt
-python score.py --predictions validation_predictions.csv --december-predictions data/december_chart_inputs.csv
+pip install -r requirements.txt
 ```
 
-The scorer validates both files and creates `scorer_results/candidate_december.png`.
+3. Run the training and prediction pipeline:
 
-## Submit
+```bash
+python notebook/train_model.py
+```
 
-- GitHub repository containing your code, dependencies, and run instructions
-- `validation_predictions.csv`
-- PDF or DOCX report containing your validation, data split approach and `candidate_december.png`
-- 2-3 minute Loom link
+4. Run the scoring script:
+
+```bash
+python score.py --predictions validation_predictions.csv --december-predictions data/december-chart-inputs.csv
+```s
